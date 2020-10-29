@@ -4,6 +4,7 @@
     "type": "yii2-extension",
     "keywords": [
         "yii2",
+		"i18n",
         "extension",
         "translation",
         "manager",
@@ -22,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "umbalaconmeogia\\i18nui\\": ""
+            "umbalaconmeogia\\i18nui\\": "src/"
         }
     }
 }
