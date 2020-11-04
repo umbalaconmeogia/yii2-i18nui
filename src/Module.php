@@ -48,7 +48,7 @@ class Module extends \yii\base\Module
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en',
             'forceTranslation' => true,
-            'basePath' => '@umbalaconmeogia/translationmanager/messages',
+            'basePath' => '@umbalaconmeogia/i18nui/messages',
             'fileMap' => [
                 'i18nui' => 'i18nui.php',
             ],
