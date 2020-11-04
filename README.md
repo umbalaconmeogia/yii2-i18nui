@@ -108,3 +108,63 @@ while i18n.csv is created as bellow (the first row is the header, with the first
 |--|--|--|--|
 | app | house | 家 | nhà |
 | app | home | 家庭 | gia đình |
+
+## Add language related menu items
+
+### Add menu items as sub-menu
+
+Add language related menu as sub menu items on menu bar.
+
+![language sub menu](docs/material/languageSubMenu.png)
+
+```php
+    $languageMenuItems = [];
+    $languageMenuItems[] = ['label' => Yii::t('app', 'Translation manager'), 'url' => ['/i18nui']];
+
+    $languages = [
+        'vi' => 'Tiếng Việt',
+        'ja' => '日本語',
+    ];
+    $callbackUrl = Yii::$app->request->getAbsoluteUrl();
+
+    foreach ($languages as $langCode => $langName) {
+        $languageMenuItems[] = ['label' => $langName, 'url' => Url::to(['/i18nui/default/set-language', 'language' => $langCode, 'callbackUrl' => $callbackUrl])];
+    }
+
+    $menuItems[] = [
+        'label' => Yii::t('app', 'Language'),
+        'items' => $languageMenuItems,
+    ];
+```
+
+### Add menu items as sub-sub-menu
+
+Add language related menu as an item of sub menu on menu bar.
+
+![language sub sub menu](docs/material/languageSubSubMenu.png)
+
+Use [kartik-v/yii2-nav-x](https://demos.krajee.com/nav-x) to display sub-sub-menu easily.
+
+```php
+    $languageMenuItems = [];
+    $languageMenuItems[] = ['label' => Yii::t('app', 'Translation manager'), 'url' => ['/i18nui']];
+
+    $languages = [
+        'vi' => 'Tiếng Việt',
+        'ja' => '日本語',
+    ];
+    $callbackUrl = Yii::$app->request->getAbsoluteUrl();
+
+    foreach ($languages as $langCode => $langName) {
+        $languageMenuItems[] = ['label' => $langName, 'url' => Url::to(['/i18nui/default/set-language', 'language' => $langCode, 'callbackUrl' => $callbackUrl])];
+    }
+    $adminMenuItems[] = [
+        'label' => Yii::t('app', 'Language'),
+        'items' => $languageMenuItems,
+    ];
+
+    $menuItems[] = [
+        'label' => Yii::t('app', 'Admin'),
+        'items' => $adminMenuItems,
+    ];
+```
