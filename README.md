@@ -141,9 +141,9 @@ Add language related menu as sub menu items on menu bar.
 
 Add language related menu as an item of sub menu on menu bar.
 
-![language sub sub menu](docs/material/languageSubSubMenu.png)
-
 Use [kartik-v/yii2-nav-x](https://demos.krajee.com/nav-x) to display sub-sub-menu easily.
+
+![language sub sub menu](docs/material/languageSubSubMenu.png)
 
 ```php
     $languageMenuItems = [];
@@ -167,4 +167,13 @@ Use [kartik-v/yii2-nav-x](https://demos.krajee.com/nav-x) to display sub-sub-men
         'label' => Yii::t('app', 'Admin'),
         'items' => $adminMenuItems,
     ];
+    // Other stuffs
+
+    echo NavX::widget([
+        // 'options' => ['class' => 'ml-3 navbar-nav navbar-left'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => FALSE,
+        'items' => $menuItems,
+    ]);
+
 ```
