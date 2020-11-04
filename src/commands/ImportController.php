@@ -7,6 +7,10 @@ use umbalaconmeogia\i18nui\models\SourceMessage;
 use umbalaconmeogia\i18nui\models\Message;
 use yii\console\Controller;
 
+if(0 === strpos(PHP_OS, 'WIN')) {
+    setlocale(LC_CTYPE, 'C');
+}
+
 /**
  * DefaultController implements the CRUD actions for SourceMessage model.
  */
