@@ -76,7 +76,8 @@ class SourceMessage extends BaseModel
      */
     public function getMessages()
     {
-        return $this->hasMany(HModule::modelMessageClass()::className(), ['id' => 'id']);
+        // TODO: Don't know why it cause error if using HModule::modelMessageClass() here.
+        return $this->hasMany(Message::class, ['id' => 'id']);
     }
 
     /**
@@ -89,7 +90,7 @@ class SourceMessage extends BaseModel
     }
 
     public function getTranslation($lang){
-        return (isset($this->translations[$lang]))?$this->translations[$lang]:null;
+        return (isset($this->translations[$lang])) ? $this->translations[$lang] : null;
     }
 
     /**
@@ -113,7 +114,7 @@ class SourceMessage extends BaseModel
         $result = parent::beforeDelete();
 
         if ($result) {
-            Message::deleteAll(['id' => $this->id]);
+            HModule::modelMessageClass()::deleteAll(['id' => $this->id]);
         }
         return $result;
     }

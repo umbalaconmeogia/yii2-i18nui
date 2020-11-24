@@ -197,17 +197,13 @@ Config
 Class `frontent\models\NewMessage`
 ```php
 namespace frontend\models;
-
-use umbalaconmeogia\i18nui\models\Message;
-use Yii;
-
-class NewMessage extends Message
+class NewMessage extends \umbalaconmeogia\i18nui\models\Message
 {
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
 
-        Yii::trace('New afterSave', __METHOD__);
+        \Yii::trace('New afterSave', __METHOD__);
     }
 }
 ```
