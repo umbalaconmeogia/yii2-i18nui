@@ -76,7 +76,7 @@ class SourceMessage extends BaseModel
      */
     public function getMessages()
     {
-        return $this->hasMany(Message::className(), ['id' => 'id']);
+        return $this->hasMany(HModule::modelMessageClass()::className(), ['id' => 'id']);
     }
 
     /**
@@ -125,7 +125,7 @@ class SourceMessage extends BaseModel
     public function afterSave($insert, $changedAttributes)
     {
         foreach ($this->languages as $language => $translation) {
-            $model = Message::findOneCreateNew([
+            $model = HModule::modelMessageClass()::findOneCreateNew([
                 'id' => $this->id,
                 'language' => $language,
             ]);

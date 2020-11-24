@@ -175,5 +175,39 @@ Use [kartik-v/yii2-nav-x](https://demos.krajee.com/nav-x) to display sub-sub-men
         'encodeLabels' => FALSE,
         'items' => $menuItems,
     ]);
+```
 
+## Use another Message, SourceMessage classes
+
+If you want to use your own Message, SourceMessage classes, define them and declared in configuration of i18nui.
+
+For example.
+
+Config
+```php
+    'modules' => [
+        'i18nui' => [
+            'class' => 'umbalaconmeogia\i18nui\Module',
+            'languages' => ['ja', 'vi'], // Any languages that you want to use
+            'modelMessageClass' => 'frontend\models\NewMessage',
+        ],
+    ],
+```
+
+Class `frontent\models\NewMessage`
+```php
+namespace frontend\models;
+
+use umbalaconmeogia\i18nui\models\Message;
+use Yii;
+
+class NewMessage extends Message
+{
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        Yii::trace('New afterSave', __METHOD__);
+    }
+}
 ```

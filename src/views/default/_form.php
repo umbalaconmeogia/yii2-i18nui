@@ -8,14 +8,17 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\SourceMessage */
 /* @var $form yii\widgets\ActiveForm */
 
-$module = Yii::$app->controller->module;
+$messageArrayOptionArr = HModule::messageCategoryOptionArr();
+if (!$model->category) {
+    $model->category = array_key_first($messageArrayOptionArr);
+}
 ?>
 
 <div class="source-message-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category')->radioList(HModule::messageCategoryOptionArr()) ?>
+    <?= $form->field($model, 'category')->radioList($messageArrayOptionArr) ?>
 
     <?= $form->field($model, 'message')->textarea() ?>
 

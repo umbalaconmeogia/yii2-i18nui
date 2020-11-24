@@ -1,7 +1,11 @@
 <?php
 namespace umbalaconmeogia\i18nui;
 
+use umbalaconmeogia\i18nui\models\Message;
+use umbalaconmeogia\i18nui\models\SourceMessage;
+use umbalaconmeogia\i18nui\models\SourceMessageSearch;
 use Yii;
+use yii\filters\AccessControl;
 
 class Module extends \yii\base\Module
 {
@@ -24,6 +28,24 @@ class Module extends \yii\base\Module
     public $moduleCategory = 'i18nui';
 
     /**
+     * Model class for Message.
+     * @var string
+     */
+    public $modelMessageClass = Message::class;
+
+    /**
+     * Model class for SourceMessage.
+     * @var string
+     */
+    public $modelSourceMessageClass = SourceMessage::class;
+
+    /**
+     * Model class for SourceMessageSearch.
+     * @var string
+     */
+    public $modelSourceMessageSearchClass = SourceMessageSearch::class;
+
+    /**
      * Add configuration for command line.
      * @inheritdoc
      */
@@ -37,6 +59,26 @@ class Module extends \yii\base\Module
         if (Yii::$app instanceof \yii\console\Application) {
             $this->controllerNamespace = 'umbalaconmeogia\i18nui\commands';
         }
+    }
+
+    public function behaviors()
+    {
+        $behaviors = NULL;
+        if (! Yii::$app instanceof \yii\console\Application) {
+            $behaviors = [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**

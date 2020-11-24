@@ -30,4 +30,27 @@ class HModule
         return array_combine($categories, $categories);
     }
 
+    /**
+     * @return string
+     */
+    public static function modelMessageClass()
+    {
+        return self::instance()->modelMessageClass;
+    }
+
+    /**
+     * @return string
+     */
+    public static function modelSourceMessageClass()
+    {
+        return self::instance()->modelSourceMessageClass;
+    }
+
+    /**
+     * @return string
+     */
+    public static function modelSourceMessageSearchClass()
+    {
+        return self::instance()->modelSourceMessageSearchClass;
+    }
 }

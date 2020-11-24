@@ -2,18 +2,34 @@
 namespace umbalaconmeogia\i18nui\controllers;
 
 use umbalaconmeogia\i18nui\actions\SetLanguageAction;
+use umbalaconmeogia\i18nui\helpers\HModule;
 use Yii;
-use umbalaconmeogia\i18nui\models\SourceMessage;
-use umbalaconmeogia\i18nui\models\SourceMessageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * DefaultController implements the CRUD actions for SourceMessage model.
  */
 class DefaultController extends Controller
 {
+    /**
+     * @var string
+     */
+    private $sourceMessageSearchClass;
+
+    /**
+     * @var string
+     */
+    private $sourceMessageClass;
+
+    public function init()
+    {
+        parent::init();
+
+        $this->sourceMessageSearchClass = HModule::modelSourceMessageSearchClass();
+        $this->sourceMessageClass = HModule::modelSourceMessageClass();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -32,7 +48,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SourceMessageSearch();
+        $searchModel = new $this->sourceMessageSearchClass;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,7 +77,7 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new SourceMessage();
+        $model = new $this->sourceMessageClass;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,7 +131,7 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = SourceMessage::findOne($id)) !== null) {
+        if (($model = $this->sourceMessageClass::findOne($id)) !== null) {
             return $model;
         }
 

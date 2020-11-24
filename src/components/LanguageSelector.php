@@ -10,7 +10,7 @@ use yii\base\BootstrapInterface;
  *  'bootstrap' => [
  *      'log',
  *      [
- *          'class' => 'umbalaconmeogia\i18nui\components',
+ *          'class' => 'umbalaconmeogia\i18nui\components\LanguageSelector',
  *          'supportedLanguages' => ['vi', 'ja'],
  *      ],
  *  ],
