@@ -41,7 +41,7 @@ class SourceMessageSearch extends SourceMessage
      */
     public function search($params)
     {
-        $query = HModule::modelSourceMessageClass::find();
+        $query = HModule::modelSourceMessageClass()::find();
         $languages = HModule::languages();
         foreach ($languages as $language){
             $query->leftJoin('{{%message}} as '.$language, $language.'.id = {{%source_message}}.id and '.$language.'.language = \''.$language.'\'');
