@@ -71,6 +71,11 @@ class Module extends \yii\base\Module
                     'rules' => [
                         [
                             'allow' => true,
+                            'actions' => ['set-language'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'allow' => true,
                             'roles' => ['@'],
                         ],
                     ],
