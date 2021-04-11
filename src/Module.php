@@ -63,7 +63,7 @@ class Module extends \yii\base\Module
 
     public function behaviors()
     {
-        $behaviors = NULL;
+        $behaviors = [];
         if (! Yii::$app instanceof \yii\console\Application) {
             $behaviors = [
                 'access' => [
