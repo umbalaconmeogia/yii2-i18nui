@@ -22,7 +22,7 @@ class ImportController extends Controller
      */
     public function actionCsv($csvFile)
     {
-        CsvWithHeader::read($csvFile, function(CsvWithHeader $csv) {
+        CsvWithHeader::read($csvFile, function($csv) {
             while ($csv->loadRow() !== FALSE) {
                 // Get attributes as an array.
                 $attr = $csv->getRowAsAttributes();
