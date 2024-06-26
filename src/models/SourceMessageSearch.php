@@ -66,8 +66,8 @@ class SourceMessageSearch extends SourceMessage
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['ilike', 'category', $this->category])
-            ->andFilterWhere(['ilike', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'category', $this->category])
+            ->andFilterWhere(['like', 'message', $this->message]);
         foreach ($languages as $language) {
             if(isset($this->languages[$language])) {
                 $query->andFilterWhere(['like', "{$language}.translation", $this->languages[$language]]);
